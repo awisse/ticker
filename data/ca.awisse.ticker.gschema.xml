@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="ticker">
+	<schema id="ca.awisse.ticker" path="/ca/awisse/ticker/">
+	</schema>
+</schemalist>

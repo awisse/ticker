@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=ticker
+Exec=ticker
+Icon=ca.awisse.ticker
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

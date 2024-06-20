@@ -1,0 +1,6 @@
+data/ca.awisse.ticker.desktop.in
+data/ca.awisse.ticker.metainfo.xml.in
+data/ca.awisse.ticker.gschema.xml
+src/main.c
+src/ticker-window.c
+src/ticker-window.ui
