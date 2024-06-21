@@ -2,8 +2,12 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="TickerWindow" parent="GtkApplicationWindow">
-    <property name="default-width">600</property>
-    <property name="default-height">300</property>
+    <property name="default-width">300</property>
+    <property name="default-height">150</property>
+    <property name="title">Ticker</property>
+    <style>
+      <class name="devel"/>
+    </style>
     <property name="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <child type="end">
@@ -17,11 +21,27 @@
       </object>
     </property>
     <property name="child">
-      <object class="GtkLabel" id="label">
-        <property name="label">Hello, World!</property>
-        <style>
-          <class name="title-1"/>
-        </style>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="label">
+            <property name="label">Metronome</property>
+            <property name="halign">3</property>
+            <property name="vexpand">TRUE</property>
+            <style>
+              <!-- styles borrowed from adwaita -->
+              <class name="heading"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="start_stop">
+            <property name="label" translatable="yes">Start</property>
+            <property name="halign">3</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
+          </object>
+        </child>
       </object>
     </property>
   </template>

@@ -2,6 +2,7 @@ ticker_sources = [
   'main.c',
   'ticker-application.c',
   'ticker-window.c',
+  'ticker-button.c',
 ]
 
 ticker_deps = [

@@ -72,7 +72,7 @@ ticker_application_about_action (GSimpleAction *action,
                                  GVariant      *parameter,
                                  gpointer       user_data)
 {
-	static const char *authors[] = {"Aurel", NULL};
+	static const char *authors[] = {"Aurel Wisse", NULL};
 	TickerApplication *self = user_data;
 	GtkWindow *window = NULL;
 
@@ -85,7 +85,7 @@ ticker_application_about_action (GSimpleAction *action,
 	                       "logo-icon-name", "ca.awisse.ticker",
 	                       "authors", authors,
 	                       "version", "0.1.0",
-	                       "copyright", "© 2024 Aurel",
+	                       "copyright", "© 2024 Aurel Wisse",
 	                       NULL);
 }
 
