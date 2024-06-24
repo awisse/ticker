@@ -54,7 +54,7 @@ ticker_window_init (TickerWindow *self)
 
    	gtk_widget_init_template (GTK_WIDGET (self));
 
-        g_signal_connect (self->start_stop, "activate",
+        g_signal_connect (self->start_stop, "clicked",
                           G_CALLBACK (ticker_on_off), NULL);
 
 }

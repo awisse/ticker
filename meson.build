@@ -7,6 +7,7 @@ project('ticker', 'c',
 i18n = import('i18n')
 gnome = import('gnome')
 cc = meson.get_compiler('c')
+data_dir = meson.global_source_root() / 'data'
 
 config_h = configuration_data()
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())

@@ -3,6 +3,7 @@ ticker_sources = [
   'ticker-application.c',
   'ticker-window.c',
   'ticker-button.c',
+  'ticking.c'
 ]
 
 ticker_deps = [
@@ -11,7 +12,8 @@ ticker_deps = [
 
 ticker_sources += gnome.compile_resources('ticker-resources',
   'ticker.gresource.xml',
-  c_name: 'ticker'
+  c_name: 'ticker',
+  source_dir: [data_dir]
 )
 
 executable('ticker', ticker_sources,
