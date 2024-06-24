@@ -13,11 +13,12 @@ sound_notified (GtkMediaStream* stream,
   g_print("has-audio: %d\n", gtk_media_stream_has_audio (stream));
 }
 
-static void
+static gint
 sound_timestamp (gpointer data)
 {
   GtkMediaStream* stream = GTK_MEDIA_STREAM (data);
   g_print ("Timestamp: %ld\n", gtk_media_stream_get_timestamp (stream));
+  return G_SOURCE_REMOVE;
 }
 
 static void
@@ -42,7 +43,7 @@ void play_tick(void)
 
   gtk_media_stream_play (stream);
 
-  timeout_id = g_timeout_add_once (100, sound_timestamp, stream);
+  timeout_id = g_timeout_add(100, sound_timestamp, stream);
 
   g_print ("TimeoutID: %u\n", timeout_id);
   g_print ("Playing  : %d\n", gtk_media_stream_get_playing (stream));
