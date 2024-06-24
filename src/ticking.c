@@ -4,7 +4,7 @@
 
 #include "ticking.h"
 
-const char audio[] = "/ca/awisse/ticker/audio/service-login.oga";
+const char audio[] = "/ca/awisse/ticker/audio/clicker-low.ogg";
 
 static void
 sound_notified (GtkMediaStream* stream,

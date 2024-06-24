@@ -7,7 +7,7 @@ ticker_sources = [
 ]
 
 ticker_deps = [
-  dependency('gtk4'),
+  dependency('gtk4')
 ]
 
 ticker_sources += gnome.compile_resources('ticker-resources',
