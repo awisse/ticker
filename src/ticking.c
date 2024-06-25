@@ -6,46 +6,19 @@
 
 const char audio[] = "/ca/awisse/ticker/audio/clicker-low.ogg";
 
-static void
-sound_notified (GtkMediaStream* stream,
-                gpointer data)
-{
-  g_print("has-audio: %d\n", gtk_media_stream_has_audio (stream));
-}
-
-static gint
-sound_timestamp (gpointer data)
-{
-  GtkMediaStream* stream = GTK_MEDIA_STREAM (data);
-  g_print ("Timestamp: %ld\n", gtk_media_stream_get_timestamp (stream));
-  return G_SOURCE_REMOVE;
-}
-
-static void
-sound_ended (GtkMediaStream *stream,
-             gpointer        data)
-{
-  g_print ("Sound ended\n");
-  g_object_unref (stream);
-}
-
-void play_tick(void)
+guint
+play_tick (gpointer user_data)
 {
   GtkMediaStream* stream = NULL;
-  guint timeout_id;
 
   stream = gtk_media_file_new_for_resource (audio);
-  g_signal_connect (stream, "notify::prepared", G_CALLBACK (sound_notified), NULL);
 
   gtk_media_stream_set_volume (stream, 1.0);
 
-  g_signal_connect (stream, "notify::ended", G_CALLBACK (sound_ended), NULL);
+  /* Delete after
+  g_signal_connect (stream, "notify::ended", G_CALLBACK (g_object_unref), NULL);
 
   gtk_media_stream_play (stream);
 
-  timeout_id = g_timeout_add(100, sound_timestamp, stream);
-
-  g_print ("TimeoutID: %u\n", timeout_id);
-  g_print ("Playing  : %d\n", gtk_media_stream_get_playing (stream));
-
+  return TRUE;
 }

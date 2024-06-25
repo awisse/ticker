@@ -5,5 +5,5 @@
 
 #include <gtk/gtk.h>
 
-void
-play_tick (void);
+guint
+play_tick (gpointer user_data);
