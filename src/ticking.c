@@ -6,19 +6,32 @@
 
 const char audio[] = "/ca/awisse/ticker/audio/clicker-low.ogg";
 
+void
+rewind_stream (GtkMediaStream *stream,
+               gpointer       user_data)
+{
+  g_print("Timestamp after: %ld\n", gtk_media_stream_get_timestamp (stream));
+  gtk_media_stream_seek (stream, 0);
+}
+
 guint
 play_tick (gpointer user_data)
 {
-  GtkMediaStream* stream = NULL;
+  static GtkMediaStream* stream = NULL;
 
-  stream = gtk_media_file_new_for_resource (audio);
+  g_print("GtkMediaStream: %p\n", stream);
 
-  gtk_media_stream_set_volume (stream, 1.0);
+  if (!stream) {
+    stream = gtk_media_file_new_for_resource (audio);
+    gtk_media_stream_set_volume (stream, 1.0);
+    g_signal_connect (stream, "notify::ended", G_CALLBACK (rewind_stream), NULL);
+  }
 
-  g_signal_connect (stream, "notify::ended", G_CALLBACK (g_object_unref), NULL);
+  g_print("Timestamp before: %ld\n", gtk_media_stream_get_timestamp (stream));
 
   gtk_media_stream_play (stream);
 
   return TRUE;
 }
+
 
