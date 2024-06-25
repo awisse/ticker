@@ -15,10 +15,10 @@ play_tick (gpointer user_data)
 
   gtk_media_stream_set_volume (stream, 1.0);
 
-  /* Delete after
   g_signal_connect (stream, "notify::ended", G_CALLBACK (g_object_unref), NULL);
 
   gtk_media_stream_play (stream);
 
   return TRUE;
 }
+
