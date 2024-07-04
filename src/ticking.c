@@ -43,7 +43,10 @@ update_tick (void* user_data)
 
   if (elapsed > (timer->counter) * 1000000) {
     play_tick();
-    g_print ("%3d: Elapsed %ld\n", timer->counter++, elapsed);
+
+    g_print ("%3d: Elapsed %ld\n", timer->counter, elapsed);
+    /* Advance counter to presently elapsed in case computer was sleeping */
+    timer->counter = elapsed / 1000000 + 1;
   }
   return G_SOURCE_CONTINUE;
 }
