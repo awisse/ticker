@@ -5,10 +5,19 @@
 
 #include <gtk/gtk.h>
 
-void
-rewind_stream (GtkMediaStream *stream,
-               gpointer       user_data);
+typedef struct _ticker {
+  guint counter;
+  gint64 first_tick;
 
-guint
-play_tick (gpointer user_data);
+} ticker;
+
+gint
+start_ticking (void);
+
+void
+stop_ticking (void);
+
+gboolean
+update_tick (void* user_data);
+
 

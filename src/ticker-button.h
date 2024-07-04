@@ -1,6 +1,7 @@
 /*
  * Manage the events received by the ticker button
  */
+#pragma once
 
 #include <gtk/gtk.h>
 
