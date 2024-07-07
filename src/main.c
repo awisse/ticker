@@ -28,12 +28,17 @@ int
 main (int   argc,
       char *argv[])
 {
-	g_autoptr(TickerApplication) app = NULL;
+  	g_autoptr(TickerApplication) app = NULL;
 	int ret;
 
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+
+    /* Display Glib version to know where we stand on the
+     * platform this is built on */
+  	g_print("GLib version: %d.%d.%d\n", GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION,
+		GLIB_MICRO_VERSION);
 
 #if GLIB_CHECK_VERSION (2, 74, 0)
 	app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_DEFAULT_FLAGS);
@@ -44,3 +49,4 @@ main (int   argc,
 
 	return ret;
 }
+

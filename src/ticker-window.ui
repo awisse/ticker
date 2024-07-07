@@ -25,21 +25,26 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="label">
-            <property name="label">Metronome</property>
+            <property name="label">0:00</property>
             <property name="halign">3</property>
             <property name="vexpand">TRUE</property>
+            <property name="margin-top">30</property>
+            <property name="margin-bottom">10</property>
             <style>
               <!-- styles borrowed from adwaita -->
-              <class name="heading"/>
+              <class name="title-1"/>
             </style>
           </object>
         </child>
         <child>
-          <object class="GtkToggleButton" id="start_stop">
-            <property name="label" translatable="yes">Start</property>
+          <object class="GtkButton" id="start_stop">
+            <property name="icon-name">media-playback-start-symbolic</property>
             <property name="halign">3</property>
             <property name="margin-top">10</property>
             <property name="margin-bottom">10</property>
+            <style>
+              <class name="circular"/>
+            </style>
           </object>
         </child>
       </object>
@@ -62,3 +67,4 @@
     </section>
   </menu>
 </interface>
+
