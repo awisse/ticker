@@ -2,7 +2,7 @@
 #include "ticking.h"
 
 void
-ticker_on_off (GtkToggleButton *togglebutton,
+ticker_on_off (GtkButton *togglebutton,
                GVariant *parameter G_GNUC_UNUSED,
                gpointer *data G_GNUC_UNUSED)
 {
@@ -32,3 +32,4 @@ ticker_on_off (GtkToggleButton *togglebutton,
     playing = FALSE;
   }
 }
+

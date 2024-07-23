@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#define G_LOG_DOMAIN "ticker-main"
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -28,25 +29,25 @@ int
 main (int   argc,
       char *argv[])
 {
-  	g_autoptr(TickerApplication) app = NULL;
-	int ret;
+  g_autoptr(TickerApplication) app = NULL;
+  int ret;
 
-	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (GETTEXT_PACKAGE);
+  bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
 
-    /* Display Glib version to know where we stand on the
-     * platform this is built on */
-  	g_print("GLib version: %d.%d.%d\n", GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION,
-		GLIB_MICRO_VERSION);
+  /* Display Glib version to know where we stand on the
+   * platform this is built on */
+  g_info("GLib version: %d.%d.%d\n", GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION,
+          GLIB_MICRO_VERSION);
 
 #if GLIB_CHECK_VERSION (2, 74, 0)
-	app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_DEFAULT_FLAGS);
+  app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_DEFAULT_FLAGS);
 #else
-	app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_FLAGS_NONE);
+  app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_FLAGS_NONE);
 #endif
-	ret = g_application_run (G_APPLICATION (app), argc, argv);
+  ret = g_application_run (G_APPLICATION (app), argc, argv);
 
-	return ret;
+  return ret;
 }
 

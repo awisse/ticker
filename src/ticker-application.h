@@ -26,7 +26,8 @@ G_BEGIN_DECLS
 
 #define TICKER_TYPE_APPLICATION (ticker_application_get_type())
 
-G_DECLARE_FINAL_TYPE (TickerApplication, ticker_application, TICKER, APPLICATION, GtkApplication)
+G_DECLARE_FINAL_TYPE (TickerApplication, ticker_application, TICKER,
+                      APPLICATION, GtkApplication)
 
 TickerApplication *ticker_application_new (const char        *application_id,
                                            GApplicationFlags  flags);

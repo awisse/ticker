@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#define G_LOG_DOMAIN "ticker-window"
 #include "config.h"
 
 #include "ticker-window.h"
@@ -25,12 +26,12 @@
 
 struct _TickerWindow
 {
-	GtkApplicationWindow  parent_instance;
+  GtkApplicationWindow  parent_instance;
 
-	/* Template widgets */
-	GtkHeaderBar        *header_bar;
-	GtkLabel            *label;
-        GtkToggleButton     *start_stop;
+  /* Template widgets */
+  GtkHeaderBar  *header_bar;
+  GtkLabel      *label;
+  GtkButton     *start_stop;
 };
 
 G_DEFINE_FINAL_TYPE (TickerWindow, ticker_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -38,12 +39,12 @@ G_DEFINE_FINAL_TYPE (TickerWindow, ticker_window, GTK_TYPE_APPLICATION_WINDOW)
 static void
 ticker_window_class_init (TickerWindowClass *klass)
 {
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-	gtk_widget_class_set_template_from_resource (widget_class, "/ca/awisse/ticker/ticker-window.ui");
-	gtk_widget_class_bind_template_child (widget_class, TickerWindow, header_bar);
-	gtk_widget_class_bind_template_child (widget_class, TickerWindow, label);
-	gtk_widget_class_bind_template_child (widget_class, TickerWindow, start_stop);
+  gtk_widget_class_set_template_from_resource (widget_class, "/ca/awisse/ticker/ticker-window.ui");
+  gtk_widget_class_bind_template_child (widget_class, TickerWindow, header_bar);
+  gtk_widget_class_bind_template_child (widget_class, TickerWindow, label);
+  gtk_widget_class_bind_template_child (widget_class, TickerWindow, start_stop);
 
 
 }
@@ -52,9 +53,9 @@ static void
 ticker_window_init (TickerWindow *self)
 {
 
-   	gtk_widget_init_template (GTK_WIDGET (self));
+  gtk_widget_init_template (GTK_WIDGET (self));
 
-        g_signal_connect (self->start_stop, "clicked",
-                          G_CALLBACK (ticker_on_off), NULL);
+  g_signal_connect (self->start_stop, "clicked",
+                      G_CALLBACK (ticker_on_off), NULL);
 
 }

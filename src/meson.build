@@ -3,7 +3,8 @@ ticker_sources = [
   'ticker-application.c',
   'ticker-window.c',
   'ticker-button.c',
-  'ticking.c'
+  'ticking.c',
+  'time-label.c'
 ]
 
 ticker_deps = [

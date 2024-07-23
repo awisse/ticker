@@ -23,12 +23,12 @@ start_ticking (void) {
     return 0;
   }
 
+  // Couldn't allocate memory above.
   return -1;
 }
 
 void stop_ticking (void) {
-  if (timer)
-    g_free (timer);
+  g_free (timer);
   timer = NULL;
 }
 
@@ -36,15 +36,14 @@ gboolean
 update_tick (void* user_data)
 {
   gint64 now, elapsed;
-  //GtkButton* button = GTK_BUTTON (user_data);
 
   now = g_get_monotonic_time ();
   elapsed =  now - timer->first_tick;
 
   if (elapsed > (timer->counter) * 1000000) {
+    /* First the sound */
     play_tick();
 
-    g_print ("%3d: Elapsed %ld\n", timer->counter, elapsed);
     /* Advance counter to presently elapsed in case computer was sleeping */
     timer->counter = elapsed / 1000000 + 1;
   }
@@ -61,10 +60,16 @@ play_tick (void)
   g_signal_connect (stream, "notify::ended", G_CALLBACK (g_object_unref), NULL);
 
   gtk_media_stream_play (stream);
-
-  //return TRUE;
-
 }
+
+gint
+get_seconds (void)
+{
+  return timer->counter;
+}
+
+
+
 
 
 

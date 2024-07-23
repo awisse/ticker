@@ -6,7 +6,7 @@
 #include <gtk/gtk.h>
 
 typedef struct _ticker {
-  guint counter;
+  gint counter;
   gint64 first_tick;
 
 } ticker;
@@ -20,4 +20,5 @@ stop_ticking (void);
 gboolean
 update_tick (void* user_data);
 
-
+gint
+get_seconds (void);
