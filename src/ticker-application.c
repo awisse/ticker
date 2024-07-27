@@ -52,9 +52,7 @@ ticker_application_activate (GApplication *app)
 	window = gtk_application_get_active_window (GTK_APPLICATION (app));
 
 	if (window == NULL)
-		window = g_object_new (TICKER_TYPE_WINDOW,
-		                       "application", app,
-		                       NULL);
+		window = g_object_new (TICKER_TYPE_WINDOW, "application", app, NULL);
 
 	gtk_window_present (window);
 }
@@ -117,3 +115,4 @@ ticker_application_init (TickerApplication *self)
 	                                       "app.quit",
 	                                       (const char *[]) { "<primary>q", NULL });
 }
+

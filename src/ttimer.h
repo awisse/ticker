@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gio/gio.h>
+#define T_TIMER_TIMEOUT 10
 
 #define T_TYPE_TIMER (t_timer_get_type ())
 G_DECLARE_FINAL_TYPE (TTimer, t_timer, T, TIMER, GObject)
@@ -19,6 +20,9 @@ t_timer_stop (TTimer *self);
 void
 t_timer_reset (TTimer *self);
 
+gboolean
+t_timer_running (TTimer* self);
+
 /* Return microseconds elapsed since the start of the timer */
 gdouble
 t_timer_elapsed (TTimer *self);
@@ -31,3 +35,7 @@ t_timer_check (TTimer *self);
 /* Create instance */
 TTimer*
 t_timer_new (void);
+
+/* Properties to use elsewhere */
+static const gchar seconds_prop_name[] = "seconds";
+

@@ -23,6 +23,8 @@
 
 #include "ticker-window.h"
 #include "ticker-button.h"
+#include "ttimer.h"
+#include "click.h"
 
 struct _TickerWindow
 {
@@ -32,6 +34,9 @@ struct _TickerWindow
   GtkHeaderBar  *header_bar;
   GtkLabel      *label;
   GtkButton     *start_stop;
+
+  /* Model */
+  TTimer *timer;
 };
 
 G_DEFINE_FINAL_TYPE (TickerWindow, ticker_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -46,6 +51,13 @@ ticker_window_class_init (TickerWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, TickerWindow, label);
   gtk_widget_class_bind_template_child (widget_class, TickerWindow, start_stop);
 
+}
+
+static void
+bind_seconds_to_label (TickerWindow *self)
+{
+  GtkExpression *expression;
+  expression = gtk_constant_expression_new (GTK_TYPE_LABEL, self->label);
 
 }
 
@@ -55,7 +67,17 @@ ticker_window_init (TickerWindow *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
+  /* Create timer */
+  self->timer = t_timer_new();
+
   g_signal_connect (self->start_stop, "clicked",
-                      G_CALLBACK (ticker_on_off), NULL);
+                    G_CALLBACK (ticker_on_off), self->timer);
+
+  g_signal_connect (self->timer, "seconds-updated",
+                    G_CALLBACK (click_cb), NULL);
+
+  /* Add expression to self->label */
+  bind_seconds_to_label (self);
 
 }
+

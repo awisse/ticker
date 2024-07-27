@@ -3,6 +3,10 @@
  */
 #pragma once
 #include <glib.h>
+#include "ttimer.h"
 
 GString*
 format_time (gint64 total);
+
+// void
+// update_label (TTimer *timer, )

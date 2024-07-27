@@ -1,35 +1,21 @@
 #include "ticker-button.h"
-#include "ticking.h"
+#include "ttimer.h"
 
 void
 ticker_on_off (GtkButton *togglebutton,
-               GVariant *parameter G_GNUC_UNUSED,
-               gpointer *data G_GNUC_UNUSED)
+               gpointer *data)
 {
   GtkButton* button = GTK_BUTTON (togglebutton);
-  static guint timeout_id = 0;
-  static gboolean playing = FALSE;
+  TTimer* timer = T_TIMER (data);
 
-  if (!playing) {
-    /* Start clicking once per second */
-    if (start_ticking () == -1) {
-      g_printerr ("Couldn't allocate memory for timer\n");
-      return;
-    }
-    timeout_id = g_timeout_add (10, G_SOURCE_FUNC (update_tick), button);
-
-    /* Button becomes a stop button */
-    gtk_button_set_icon_name(button, "media-playback-stop-symbolic");
-    playing = TRUE;
-  } else {
-    if (!g_source_remove (timeout_id)) {
-      g_printerr ("Timeout Removal Failed!\n");
-    }
-    stop_ticking ();
-
+  if (t_timer_running (timer)) {
+    t_timer_stop (timer);
     /* Button becomes a start button */
     gtk_button_set_icon_name (button, "media-playback-start-symbolic");
-    playing = FALSE;
+  } else {
+    t_timer_start (timer);
+    /* Button becomes a stop button */
+    gtk_button_set_icon_name(button, "media-playback-stop-symbolic");
   }
 }
 

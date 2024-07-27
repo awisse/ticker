@@ -1,6 +1,9 @@
-/* Implement the time label */
-#include "time-label.h"
+/* Format the time for the time label */
+#include "time-str.h"
 
+/* Transform the number of seconds `total` into an hh:mm:ss string
+ * without leading zeros. The caller is responsible for freeing the
+ * return value */
 GString* format_time (gint64 total) {
 
   GString* gstr;

@@ -6,4 +6,4 @@
 #include <gtk/gtk.h>
 
 void
-ticker_on_off (GtkButton *button, GVariant *parameter, gpointer* data);
+ticker_on_off (GtkButton *button, gpointer* data);
