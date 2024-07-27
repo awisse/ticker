@@ -1,13 +1,16 @@
 /* Format the time for the time label */
 #include "time-str.h"
+#define DEFAULT_STR "--:--:--"
 
 /* Transform the number of seconds `total` into an hh:mm:ss string
  * without leading zeros. The caller is responsible for freeing the
  * return value */
-GString* format_time (gint64 total) {
-
+char*
+format_time (guint total)
+{
   GString* gstr;
-  gint64 seconds, minutes, hours;
+  char* result_str;
+  guint seconds, minutes, hours;
   gsize length;
   gssize erased;
 
@@ -18,11 +21,10 @@ GString* format_time (gint64 total) {
   hours = (total / 3600);
 
   if (hours > 99) {
-    gstr = g_string_assign (gstr, "--:--:--");
-    return gstr;
+    return g_strdup (DEFAULT_STR);
   }
 
-  g_string_printf (gstr, "%ld:%02ld:%02ld", hours, minutes, seconds);
+  g_string_printf (gstr, "%u:%02u:%02u", hours, minutes, seconds);
   length = gstr->len;
 
   if (total < 10) {
@@ -38,8 +40,9 @@ GString* format_time (gint64 total) {
   }
 
   gstr = g_string_erase (gstr, 0, erased);
+  result_str = g_string_free (gstr, FALSE);
 
-  return gstr;
+  return result_str;
 
 }
 

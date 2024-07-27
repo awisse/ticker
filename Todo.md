@@ -7,10 +7,10 @@
 
 ☒ 3. Use play/stop icon instead of text button.
 
-☐ 4. Refactor application for clicking and display 
+☒ 4. Refactor application for clicking and display 
      update.
-    ☐ a. Use GObject signalling and properties.
-    ☐ b. Label displays a counter of hours:minutes:seconds instead of 
+    ☒ a. Use GObject signalling and properties.
+    ☒ b. Label displays a counter of hours:minutes:seconds instead of 
          "Metronome"
 
 ☐ 5. Understand "Configurations" in *Configure Project…"
@@ -20,4 +20,5 @@
 
 ☐ 7. Add an icon to the app.
 
-☐ 7. Deploy the application.
+☐ 7. Deploy the application. Without flatpak?
+

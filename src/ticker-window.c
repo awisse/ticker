@@ -24,6 +24,7 @@
 #include "ticker-window.h"
 #include "ticker-button.h"
 #include "ttimer.h"
+#include "time-str.h"
 #include "click.h"
 
 struct _TickerWindow
@@ -53,11 +54,34 @@ ticker_window_class_init (TickerWindowClass *klass)
 
 }
 
+static char*
+time_to_char (GObject *object, guint total, gpointer unused)
+{
+  return format_time (total);
+}
+
 static void
 bind_seconds_to_label (TickerWindow *self)
 {
-  GtkExpression *expression;
-  expression = gtk_constant_expression_new (GTK_TYPE_LABEL, self->label);
+  GtkExpression *expression, *timer_expression;
+
+  /* Transform timer into an expression */
+  timer_expression = gtk_constant_expression_new (T_TYPE_TIMER, self->timer);
+
+  /* Get the `seconds_prop_name` property as an expression, which is
+   * a guint in seconds. */
+  expression = gtk_property_expression_new (T_TYPE_TIMER,
+                                            gtk_expression_ref (timer_expression),
+                                            seconds_prop_name);
+
+  /* Transform the guint into a string to be inserted into the label */
+  expression = gtk_cclosure_expression_new (G_TYPE_STRING, NULL, 1,
+                                            (GtkExpression *[1]){expression},
+                                            G_CALLBACK (time_to_char),
+                                            NULL, NULL);
+
+  /* Bind the expression to the label */
+  gtk_expression_bind (expression, self->label, "label", self->label);
 
 }
 
@@ -76,8 +100,11 @@ ticker_window_init (TickerWindow *self)
   g_signal_connect (self->timer, "seconds-updated",
                     G_CALLBACK (click_cb), NULL);
 
-  /* Add expression to self->label */
+  /* Add expression to self->label for automatic update */
   bind_seconds_to_label (self);
+
+  /* Test format_time */
+  g_debug ("format_time(100h) = %s", format_time (100 * 60 * 60));
 
 }
 

@@ -79,9 +79,10 @@ t_timer_elapsed (TTimer *self) {
 gboolean
 t_timer_check (TTimer *self) {
 
-  g_assert (self->gtimer);
+  gdouble elapsed;
 
-  gdouble elapsed = g_timer_elapsed (self->gtimer, NULL);
+  g_assert (self->gtimer);
+  elapsed = g_timer_elapsed (self->gtimer, NULL);
 
   if ((guint)elapsed > self->counter) {
     (self->counter)++;
