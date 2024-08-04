@@ -4,12 +4,18 @@ project('ticker', 'c',
   default_options: [ 'warning_level=2', 'werror=false', 'c_std=gnu11', ],
 )
 
+app_id = 'ca.awisse.ticker'
+resource_base_path = '/ca/awisse/ticker'
+
 i18n = import('i18n')
 gnome = import('gnome')
 cc = meson.get_compiler('c')
 data_dir = meson.global_source_root() / 'data'
 
+
 config_h = configuration_data()
+config_h.set_quoted('APP_ID', 'app_id')
+config_h.set_quoted('RESOURCE_BASE_PATH', resource_base_path)
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('GETTEXT_PACKAGE', 'ticker')
 config_h.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
@@ -91,3 +97,5 @@ gnome.post_install(
     gtk_update_icon_cache: true,
   update_desktop_database: true,
 )
+
+summary({'prefix': get_option('prefix')})

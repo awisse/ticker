@@ -27,11 +27,12 @@ format_time (guint total)
   g_string_printf (gstr, "%u:%02u:%02u", hours, minutes, seconds);
   length = gstr->len;
 
-  if (total < 10) {
-    erased = length - 1;
-  } else if (total < 60) {
-    erased = length - 2;
-  } else if (total < 600) {
+  /* if (total < 10) { */
+  /*   erased = length - 1; */
+  /* } else if (total < 60) { */
+  /*   erased = length - 2; */
+  /* } else  */
+  if (total < 600) {
     erased = length - 4;
   } else if (total < 3600) {
     erased = length - 5;

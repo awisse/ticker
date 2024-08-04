@@ -36,6 +36,9 @@ struct _TickerWindow
   GtkLabel      *label;
   GtkButton     *start_stop;
 
+  /* CSS */
+  GtkCssProvider *css_provider;
+
   /* Model */
   TTimer *timer;
 };
@@ -89,6 +92,8 @@ static void
 ticker_window_init (TickerWindow *self)
 {
 
+  GdkDisplay* display = gdk_display_get_default ();
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
   /* Create timer */
@@ -103,8 +108,20 @@ ticker_window_init (TickerWindow *self)
   /* Add expression to self->label for automatic update */
   bind_seconds_to_label (self);
 
+  /* Load and apply CSS information */
+  self->css_provider = gtk_css_provider_new ();
+  gtk_css_provider_load_from_resource (self->css_provider,
+                                       RESOURCE_BASE_PATH "/css/styles.css");
+
+  gtk_style_context_add_provider_for_display (display,
+                                      GTK_STYLE_PROVIDER (self->css_provider),
+                                      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
   /* Test format_time */
   g_debug ("format_time(100h) = %s", format_time (100 * 60 * 60));
 
 }
+
+
+
 

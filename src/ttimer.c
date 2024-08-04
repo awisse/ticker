@@ -44,6 +44,9 @@ t_timer_start (TTimer *self) {
 
   self->counter = 0;
   self->running = TRUE;
+
+  g_object_notify(G_OBJECT (self), seconds_prop_name);
+
   g_debug ("TTimer started");
 }
 
@@ -92,7 +95,7 @@ t_timer_check (TTimer *self) {
   return G_SOURCE_CONTINUE;
 }
 
-void
+static void
 t_timer_finalize (GObject *object)
 {
   TTimer *timer = T_TIMER (object);
@@ -173,6 +176,8 @@ t_timer_new (void) {
   t = g_object_new (T_TYPE_TIMER, NULL);
   return t;
 }
+
+
 
 
 
