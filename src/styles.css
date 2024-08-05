@@ -6,9 +6,10 @@ Changes are applied instantly and globally, for the whole application.
 */
 label.timesize {
   font-family: Verdana;
-	font-size: 10em;
+	font-size: 20em;
 }
 label.buttontextsize {
   font-family: Verdana;
 	font-size: 5em;
 }
+
