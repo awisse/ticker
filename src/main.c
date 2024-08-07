@@ -41,6 +41,11 @@ main (int   argc,
   g_info("GLib version: %d.%d.%d\n", GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION,
           GLIB_MICRO_VERSION);
 
+  /* Display GTK version to know where we stand on the
+   * platform this is built on */
+  g_info("GTK version: %d.%d.%d\n", GTK_MAJOR_VERSION, GTK_MINOR_VERSION,
+          GTK_MICRO_VERSION);
+
 #if GLIB_CHECK_VERSION (2, 74, 0)
   app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_DEFAULT_FLAGS);
 #else
@@ -50,4 +55,5 @@ main (int   argc,
 
   return ret;
 }
+
 

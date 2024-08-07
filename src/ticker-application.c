@@ -73,16 +73,22 @@ ticker_application_about_action (GSimpleAction *action,
 	static const char *authors[] = {"Aurel Wisse", NULL};
 	TickerApplication *self = user_data;
 	GtkWindow *window = NULL;
+  gchar* gtk_version;
 
 	g_assert (TICKER_IS_APPLICATION (self));
 
 	window = gtk_application_get_active_window (GTK_APPLICATION (self));
 
+  gtk_version = g_strdup_printf ("%s (GTK %d.%d.%d)", PACKAGE_VERSION,
+                                 gtk_get_major_version (),
+                                 gtk_get_minor_version (),
+                                 gtk_get_micro_version ());
+
 	gtk_show_about_dialog (window,
 	                       "program-name", "ticker",
-	                       "logo-icon-name", "ca.awisse.ticker",
+	                       "logo-icon-name", app_id,
 	                       "authors", authors,
-	                       "version", "0.1.0",
+	                       "version", gtk_version,
 	                       "copyright", "© 2024 Aurel Wisse",
 	                       NULL);
 }
@@ -115,4 +121,5 @@ ticker_application_init (TickerApplication *self)
 	                                       "app.quit",
 	                                       (const char *[]) { "<primary>q", NULL });
 }
+
 

@@ -14,7 +14,7 @@ data_dir = meson.global_source_root() / 'data'
 
 
 config_h = configuration_data()
-config_h.set_quoted('APP_ID', 'app_id')
+config_h.set_quoted('APP_ID', app_id)
 config_h.set_quoted('RESOURCE_BASE_PATH', resource_base_path)
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('GETTEXT_PACKAGE', 'ticker')

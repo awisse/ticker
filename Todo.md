@@ -1,11 +1,11 @@
 # Todos
 
-☒ 1. Preserve `GtkMediaStream` between clicks. Not Done: No advantage, 
+☒ 1. ~~Preserve `GtkMediaStream` between clicks.~~ Not Done: No advantage, 
      doesn't work.
 
 ☒ 2. Change style of Label (Font, size).
 
-☐ 3. Use play/stop icon instead of text button.
+☐ 3. ~~Use play/stop icon instead of text button.~~
 
 ☒ 4. Refactor application for clicking and display 
      update.
@@ -18,11 +18,15 @@
 ☐ 5. Understand "Configurations" in *Configure Project…"
     ☐ a. Notably "Debug" vs "Deploy" or "Install" or "Release"
 
-☐ 6. Add <SPACE> shortcut to *Keyboard Shortcuts" menu.
+☐ 6. Add <SPACE> and <ENTER> shortcuts to *Keyboard Shortcuts" menu, for 
+    starting/stopping the timer.
 
-☐ 7. Add an icon to the app.
+☒ 7. Add an icon to the app.
 
-☐ 7. Deploy the application. Without flatpak?
+☐ 7. Deploy the application. i
+    ☒ a. With Flatpak.
+    ☐ b. Without flatpak?
+
 
 
 
