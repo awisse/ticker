@@ -43,6 +43,17 @@ ticker_application_new (const char        *application_id,
 }
 
 static void
+ticker_application_startup (GApplication *app)
+{
+  /* Override default resource path based on APPLICATION_ID in order to use
+   * the same resources for development and release versions */
+  g_application_set_resource_base_path (app, RESOURCE_BASE_PATH);
+
+  /* Chain up */
+  G_APPLICATION_CLASS (ticker_application_parent_class)->startup(app);
+}
+
+static void
 ticker_application_activate (GApplication *app)
 {
 	GtkWindow *window;
@@ -62,6 +73,7 @@ ticker_application_class_init (TickerApplicationClass *klass)
 {
 	GApplicationClass *app_class = G_APPLICATION_CLASS (klass);
 
+  app_class->startup = ticker_application_startup;
 	app_class->activate = ticker_application_activate;
 }
 
@@ -121,6 +133,7 @@ ticker_application_init (TickerApplication *self)
 	                                       "app.quit",
 	                                       (const char *[]) { "<primary>q", NULL });
 }
+
 
 
 

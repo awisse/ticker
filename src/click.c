@@ -2,9 +2,10 @@
  * Define the functions that allow for playing of the tick
  */
 
+#include "config.h"
 #include "click.h"
 
-const char audio[] = "/ca/awisse/ticker/audio/clicker-low.ogg";
+const char audio[] = RESOURCE_BASE_PATH "/audio/clicker-low.ogg";
 
 static void
 play_click (void)
@@ -24,3 +25,4 @@ click_cb (GObject  *object,
 {
   play_click();
 }
+
