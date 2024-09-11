@@ -26,8 +26,11 @@
     "modules" : [
         {
             "name" : "ticker",
-            "builddir" : true,
             "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dprofile=release",
+                "-Dbuildtype=release"
+            ],
             "sources" : [
                 {
                     "type" : "git",
@@ -35,5 +38,8 @@
                 }
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
 }

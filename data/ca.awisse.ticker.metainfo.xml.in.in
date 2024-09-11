@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>ca.awisse.ticker.desktop</id>
+	<id>@app_id@</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
-  <name>Ticker</name>
+  <name>Ticker@build_type@</name>
   <summary>Play a click once per second</summary>
 	<description>
-	  <p>Ticker plays a tick once per second</p>
     <p>
       Ticker can be started and stopped with the space bar or by
       clicking on the "Start" button. It will display the elapsed time
       above the button in big letters.
     </p>
 	</description>
+  <launchable type="desktop-id">@app_id@.desktop</launchable>
 </component>
+
+

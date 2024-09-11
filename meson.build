@@ -1,10 +1,19 @@
 project('ticker', 'c',
           version: '0.1.0',
-    meson_version: '>= 0.62.0',
+    meson_version: '>= 1.1.0',
   default_options: [ 'warning_level=2', 'werror=false', 'c_std=gnu11', ],
 )
 
-app_id = 'ca.awisse.ticker'
+base_id = 'ca.awisse.ticker'
+
+if get_option('profile') == 'devel'
+  app_id = '@0@.devel'.format(base_id)
+  profile = '(Devel)'
+else
+  app_id = base_id
+  profile = ''
+endif
+
 resource_base_path = '/ca/awisse/ticker'
 
 i18n = import('i18n')
@@ -92,10 +101,16 @@ subdir('data')
 subdir('src')
 subdir('po')
 
+summary({'app_id': app_id,
+         'name': meson.project_name(),
+         })
+
+summary({'Debug': get_option('debug'),
+         'Optimization': get_option('optimization')},
+         section: 'Build')
+
 gnome.post_install(
      glib_compile_schemas: true,
     gtk_update_icon_cache: true,
   update_desktop_database: true,
 )
-
-summary({'prefix': get_option('prefix')})

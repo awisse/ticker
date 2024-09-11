@@ -47,13 +47,14 @@ main (int   argc,
           GTK_MICRO_VERSION);
 
 #if GLIB_CHECK_VERSION (2, 74, 0)
-  app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_DEFAULT_FLAGS);
+  app = ticker_application_new (APP_ID, G_APPLICATION_DEFAULT_FLAGS);
 #else
-  app = ticker_application_new ("ca.awisse.ticker", G_APPLICATION_FLAGS_NONE);
+  app = ticker_application_new (APP_ID, G_APPLICATION_FLAGS_NONE);
 #endif
   ret = g_application_run (G_APPLICATION (app), argc, argv);
 
   return ret;
 }
+
 
 

@@ -1,0 +1,7 @@
+option(
+  'profile',
+  type: 'combo',
+  choices: ['release', 'devel'],
+  value: 'devel',
+  description: 'The build profile',
+)

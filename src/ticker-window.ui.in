@@ -5,9 +5,7 @@
     <property name="default-width">600</property>
     <property name="default-height">400</property>
     <property name="title">Ticker</property>
-    <style>
-      <class name="devel"/>
-    </style>
+    @window_style@
     <property name="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <child type="end">

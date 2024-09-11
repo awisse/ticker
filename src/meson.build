@@ -18,23 +18,37 @@ src_conf = configuration_data()
 src_conf.set('app_id', app_id)
 src_conf.set('resource_base_path', resource_base_path)
 
+# Builder
+
+if get_option('profile') == 'devel'
+  window_style = '<style><class name="devel" /></style>'
+else
+  window_style = ''
+endif
+conf_ui = {'window_style' : window_style}
+configure_file(
+  input: 'ticker-window.ui.in',
+  output: '@BASENAME@',
+  configuration: conf_ui
+)
+
 # Resources
 
-res_in = configure_file(
+gresources = configure_file(
   input: 'ticker.gresource.xml.in',
-  output: 'ticker.gresource.xml',
+  output: '@BASENAME@',
   configuration: src_conf
 )
 
 
-res = gnome.compile_resources(
+resources = gnome.compile_resources(
   'ticker-resources',
-  res_in,
+  gresources,
   c_name: 'ticker',
-  source_dir: [data_dir]
+  source_dir: [data_dir, meson.current_build_dir()]
 )
 
-executable('ticker', ticker_sources + res,
+executable('ticker', ticker_sources + resources,
   dependencies: ticker_deps,
        install: true,
 )

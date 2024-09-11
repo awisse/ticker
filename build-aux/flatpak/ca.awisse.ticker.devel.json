@@ -1,0 +1,45 @@
+{
+    "id" : "ca.awisse.ticker.devel",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "46",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "ticker",
+    "finish-args" : [
+        "--share=network",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--device=dri",
+        "--socket=pulseaudio",
+        "--socket=wayland"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "ticker",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dprofile=devel",
+                "-Dbuildtype=debug"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "file:///home/aurel/Projects"
+                }
+            ]
+        }
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
+}

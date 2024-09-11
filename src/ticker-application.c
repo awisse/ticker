@@ -86,7 +86,7 @@ ticker_application_about_action (GSimpleAction *action,
 
 	gtk_show_about_dialog (window,
 	                       "program-name", "ticker",
-	                       "logo-icon-name", app_id,
+	                       "logo-icon-name", APP_ID,
 	                       "authors", authors,
 	                       "version", gtk_version,
 	                       "copyright", "© 2024 Aurel Wisse",
@@ -121,5 +121,6 @@ ticker_application_init (TickerApplication *self)
 	                                       "app.quit",
 	                                       (const char *[]) { "<primary>q", NULL });
 }
+
 
 
